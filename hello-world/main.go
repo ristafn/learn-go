@@ -2,16 +2,22 @@ package main
 
 import "fmt"
 
-func main() {
-	var numberA = 4
-
-	fmt.Println(numberA)
-
-	change(&numberA, 10)
-
-	fmt.Println(numberA)
+type person struct {
+	name string
+	age  int
 }
 
-func change(original *int, value int) {
-	*original = value
+func main() {
+	var allStudents = []struct{
+		person
+		_ int
+	}{
+		{person: person{name: "Josee", age: 20}},
+		{person: person{name: "Steve", age: 23}},
+		{person: person{name: "Kepin", age: 19}},
+	}
+
+	for _, student := range allStudents {
+		fmt.Println(student.name, "age is", student.age)
+	}
 }
