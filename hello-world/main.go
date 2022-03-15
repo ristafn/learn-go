@@ -1,7 +1,14 @@
 package main
 
-import "github.com/ristafn/hello-world/library"
+import (
+	"fmt"
+
+	"github.com/ristafn/hello-world/library"
+)
 
 func main() {
-	library.SayHello("Ethan")
+	var student = library.Student{Name: "Ethan", Grade: 21}
+
+	fmt.Println(student.Name)
+	fmt.Println(student.Grade)
 }
