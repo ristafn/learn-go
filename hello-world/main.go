@@ -2,16 +2,23 @@ package main
 
 import "fmt"
 
-func main() {
-	var numberA = 4
-
-	fmt.Println(numberA)
-
-	change(&numberA, 10)
-
-	fmt.Println(numberA)
+type User struct {
+	Name string
+	Pet  []string
 }
 
-func change(original *int, value int) {
-	*original = value
+func (u *User) newPet() {
+	fmt.Println("Get the old value", *u)
+	u.Pet = append(u.Pet, "Lucy")
+	fmt.Println("Get the new value", *u)
+}
+
+func main() {
+	u := User{"Kevin", []string{"Cat"}}
+	fmt.Println("get a old user", u)
+
+	u2 := &u
+
+	u2.newPet()
+	fmt.Println("get a new user", u)
 }
