@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fmt"
+	f "fmt" // aliasing
 
-	"github.com/ristafn/hello-world/library"
+	. "github.com/ristafn/hello-world/library" // make library same level with main.go
 )
 
 func main() {
-	var student = library.Student{Name: "Ethan", Grade: 21}
+	var student = Student{Name: "Ethan", Grade: 21}
 
-	fmt.Println(student.Name)
-	fmt.Println(student.Grade)
+	f.Println(student.Name)
+	f.Println(student.Grade)
 }
