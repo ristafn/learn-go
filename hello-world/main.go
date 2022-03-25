@@ -1,16 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
+
+type Student struct {
+	Name  string
+	Grade int
+}
+
+func (s *Student) SetName(name string) {
+    s.Name = name
+}
 
 func main() {
-	var secret interface{}
+	var s1 = &Student{Name: "john wick", Grade: 2}
+    fmt.Println("nama :", s1.Name)
 
-	secret = "ethan hunt"
-	fmt.Println(secret)
+    var reflectValue = reflect.ValueOf(s1)
+    var method = reflectValue.MethodByName("SetName")
+    method.Call([]reflect.Value{
+        reflect.ValueOf("wick"),
+    })
 
-	secret = []string{"apple", "manggo", "banana"}
-	fmt.Println(secret)
-
-	secret = 12.4
-	fmt.Println(secret)
+    fmt.Println("nama :", s1.Name)
 }
