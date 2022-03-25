@@ -2,27 +2,21 @@ package main
 
 import (
 	"fmt"
-	"reflect"
+	"runtime"
 )
 
-type Student struct {
-	Name  string
-	Grade int
-}
-
-func (s *Student) SetName(name string) {
-    s.Name = name
+func print(till int, message string) {
+	for i := 0; i < till; i++ {
+		fmt.Println((i + 1), message)
+	}
 }
 
 func main() {
-	var s1 = &Student{Name: "john wick", Grade: 2}
-    fmt.Println("nama :", s1.Name)
+	runtime.GOMAXPROCS(2)
 
-    var reflectValue = reflect.ValueOf(s1)
-    var method = reflectValue.MethodByName("SetName")
-    method.Call([]reflect.Value{
-        reflect.ValueOf("wick"),
-    })
+	go print(5, "halo")
+	print(5, "apa kabar")
 
-    fmt.Println("nama :", s1.Name)
+	var input string
+	fmt.Scanln(&input)
 }
