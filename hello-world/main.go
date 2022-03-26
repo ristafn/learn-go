@@ -2,26 +2,22 @@ package main
 
 import (
 	"fmt"
-	"runtime"
+	"strconv"
 )
 
 func main() {
-	runtime.GOMAXPROCS(2)
+	var input string
+  fmt.Print("Type some number : ")
+	fmt.Scan(&input)
 
-	var message = make(chan string)
+	var number int
+	var err error
+	number, err = strconv.Atoi(input)
+	if err != nil {
+		fmt.Println(input, "is not number")
+    fmt.Print(err.Error())
+		return
+	}
 
-	for _, each := range []string{"wick", "josee", "steve"} {
-    go func(who string) {
-      var data = fmt.Sprintf("hello %s", who)
-      message <- data
-    }(each)
-  }
-
-  for i := 0; i < 3; i++ {
-    printMessage(message)
-  }
-}
-
-func printMessage(what chan string) {
-	fmt.Println(<-what)
+	fmt.Println(number, "is number")
 }
