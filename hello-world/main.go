@@ -1,38 +1,19 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-	"strings"
-)
+import "math"
 
-func validate(input string) (bool, error) {
-	if strings.TrimSpace(input) == "" {
-		return false, errors.New("name cannot be empty")
-	}
-
-	return true, nil
+type Kubus struct {
+  Sisi float64
 }
 
-func catch() {
-	if r := recover(); r != nil {
-		fmt.Println("Error occured", r)
-	} else {
-		fmt.Println("Application running perfectly")
-	}
+func (k Kubus) Volume() float64 {
+  return math.Pow(k.Sisi, 3)
 }
 
-func main() {
-	defer catch()
+func (k Kubus) Luas() float64 {
+  return math.Pow(k.Sisi, 2) * 6
+}
 
-	var name string
-	fmt.Print("Enter your name: ")
-	fmt.Scanln(&name)
-
-	if valid, error := validate(name); valid {
-		fmt.Println("hello", name)
-	} else {
-		panic(error.Error())
-		fmt.Println("end")
-	}
+func (k Kubus) Keliling() float64 {
+  return k.Sisi * 12
 }
