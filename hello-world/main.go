@@ -1,23 +1,27 @@
 package main
 
 import (
+	"errors"
 	"fmt"
-	"strconv"
+	"strings"
 )
 
-func main() {
-	var input string
-  fmt.Print("Type some number : ")
-	fmt.Scan(&input)
-
-	var number int
-	var err error
-	number, err = strconv.Atoi(input)
-	if err != nil {
-		fmt.Println(input, "is not number")
-    fmt.Print(err.Error())
-		return
+func validate(input string) (bool, error) {
+	if strings.TrimSpace(input) == "" {
+		return false, errors.New("name cannot be empty")
 	}
 
-	fmt.Println(number, "is number")
+	return true, nil
+}
+
+func main() {
+	var name string
+	fmt.Print("Enter your name: ")
+	fmt.Scanln(&name)
+
+	if valid, error := validate(name); valid {
+		fmt.Println("hello", name)
+	} else {
+		fmt.Println(error.Error())
+	}
 }
